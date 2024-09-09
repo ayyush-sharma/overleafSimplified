@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://ayushsharma:root@freecrud.zxoftwk.mongodb.net/?retryWrites=true&w=majority&appName=freeCRUD",
+    "mongoDB": "loginauth"
+}
