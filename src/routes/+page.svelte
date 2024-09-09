@@ -41,10 +41,8 @@
 // console.log(payload);
 // console.log(data.data)
 
-// </script> 
-
 // <form action="https://www.overleaf.com/docs" method="post" target="_blank">
-//     <textarea class="bg-black text-white" rows="8" cols="60" name="snip"  />
+//     <textarea class="bg-black text-white" rows="8" cols="60" name="snip" bind:value={data} />
 //     <input type="submit" value="Open in Overleaf">
 //     </form>
 
@@ -55,7 +53,7 @@
 // <form action="?/logout" method="post">
 //   <button>Logout</button>
 // </form>
-
+</script>
 
 
 

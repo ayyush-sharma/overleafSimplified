@@ -1,4 +1,4 @@
-import { handle } from '@sveltejs/kit';
+
 import { redirect } from '@sveltejs/kit';
 
 export async function handle({ event, resolve }) {
