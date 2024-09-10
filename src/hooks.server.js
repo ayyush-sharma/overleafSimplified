@@ -15,8 +15,8 @@ export async function handle({ event, resolve }) {
 //     throw redirect(302, '/auth/login');
 //   }
   if (event.url.pathname === '/') {
-    console.log('Redirecting to /register');
-    throw redirect(302, '/public');
+    console.log('Redirecting to /Home');
+    throw redirect(302, '/public/home');
   }
   
 //   if (event.url.pathname === '/auth/register' && accessToken) {

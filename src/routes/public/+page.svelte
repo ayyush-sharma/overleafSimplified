@@ -8,18 +8,19 @@
         import skillsFunction from '$lib/scripts/skills.js'
         import achievementsFunction from '$lib/scripts/achievements.js'
         import { slide } from 'svelte/transition';
+	import Navbar from '../../lib/components/navbar.svelte';
         let latexGenerated= 'hello'
 
         const userDetails = {
-            firstName: 'Ayush',
-            lastName: 'Sharma',
-            contact: '817879',
-            email: 'email',
-            city: 'city',
-            state: 'state',
-            pincode: 4546,
-            linkedinUsername: 'ayushsharma105',
-            gitUsername: 'ayyush-sharma'
+            firstName: '',
+            lastName: '',
+            contact: '',
+            email: '',
+            city: '',
+            state: '',
+            pincode:Number ,
+            linkedinUsername: '',
+            gitUsername: ''
             };
 
             let eduVar ={
@@ -166,9 +167,11 @@
 
 </script>
 
-
 <!-- Basic Details -->
-  <div class="max-w-5xl mx-auto mt-10 bg-white shadow-lg rounded-lg overflow-hidden">
+ <div class=" w-full h-full pt-20 sm:pt-24">
+
+ 
+  <div class="max-w-5xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
     <div class="text-2xl py-4 px-6 bg-blue-900 text-white text-center font-bold uppercase">
         Basic Details 
     </div>
@@ -259,7 +262,7 @@
         </div>
        
        
-    </div>
+  </div>
 
     <!-- Education -->
 <div class="max-w-5xl mx-auto mt-10 bg-white shadow-lg rounded-lg overflow-hidden">
@@ -814,5 +817,6 @@
 </form>
 
 {latexGenerated}
+</div>
 
   
