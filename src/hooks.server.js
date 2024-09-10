@@ -1,7 +1,7 @@
 
-import { redirect } from '@sveltejs/kit';
+// import { redirect } from '@sveltejs/kit';
 
-export async function handle({ event, resolve }) {
+// export async function handle({ event, resolve }) {
 //   const cookies = event.request.headers.get('cookie');
 //   const accessToken = cookies && cookies.split('accessToken=')[1];
 //   event.locals.at = accessToken
@@ -14,10 +14,10 @@ export async function handle({ event, resolve }) {
 //     console.log('Redirecting to /register');
 //     throw redirect(302, '/auth/login');
 //   }
-  if (event.url.pathname === '/') {
-    console.log('Redirecting to /Home');
-    throw redirect(302, '/public/home');
-  }
+  // if (event.url.pathname === '/') {
+  //   console.log('Redirecting to /Home');
+  //   throw redirect(302, '/public/home');
+  // }
   
 //   if (event.url.pathname === '/auth/register' && accessToken) {
 //     throw redirect(302, '/');
@@ -32,5 +32,5 @@ export async function handle({ event, resolve }) {
 //   console.log(event.url.pathname)
 //   console.log(accessToken)
 
-  return await resolve(event);
-}
+//   return await resolve(event);
+// }

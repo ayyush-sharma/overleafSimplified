@@ -11,7 +11,7 @@
             <div class="md:flex md:items-center md:justify-center md:gap-5 ">
                 <a aria-current="page"
                     class="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:scale-125 hover:text-gray-900 "
-                    href="/public/home">Home</a>
+                    href="/">Home</a>
                 <a aria-current="page"
                     class="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:scale-125 hover:text-gray-900 "
                     href="/public/techstack">Tech Stack</a>
