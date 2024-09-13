@@ -1,822 +1,912 @@
 <script>
-        import headerPackage from '$lib/scripts/packages.js'
-        import font from '$lib/scripts/font.js'
-        import basicDeatils from '$lib/scripts/basicdetails.js'
-        import educateFunction from '$lib/scripts/education.js'
-        import experienceFunction from '$lib/scripts/experience.js'
-        import projectFunction from '$lib/scripts/projects.js'
-        import skillsFunction from '$lib/scripts/skills.js'
-        import achievementsFunction from '$lib/scripts/achievements.js'
-        import { slide } from 'svelte/transition';
-	import Navbar from '../../lib/components/navbar.svelte';
-        let latexGenerated= 'hello'
+	import headerPackage from '$lib/scripts/packages.js';
+	import font from '$lib/scripts/font.js';
+	import basicDeatils from '$lib/scripts/basicdetails.js';
+	import educateFunction from '$lib/scripts/education.js';
+	import experienceFunction from '$lib/scripts/experience.js';
+	import projectFunction from '$lib/scripts/projects.js';
+	import skillsFunction from '$lib/scripts/skills.js';
+	import achievementsFunction from '$lib/scripts/achievements.js';
+	import { fade, scale, slide } from 'svelte/transition';
+	import Glowbtn from '../../lib/components/comps/glowbtn.svelte';
 
-        const userDetails = {
-            firstName: '',
-            lastName: '',
-            contact: '',
-            email: '',
-            city: '',
-            state: '',
-            pincode:Number ,
-            linkedinUsername: '',
-            gitUsername: ''
-            };
+	let latexGenerated = 'hello';
 
-            let eduVar ={
-                vis:false,
-                name:'',
-                degree:'',
-                gradeTitle:'',
-                grade:'',
-                city:'',
-                state:'',
-                endMonth:'',
-                endYear:'',
-            }
-            let experienceVar={
-                companyName:'',
-                startMonth:'',
-                startYear:'',
-                endMonth:'',
-                endYear:'',
-                city:'',
-                state:'',
-                designation:'',
-                achievements:['','','',''],
-                vis:false,
-            }
-            let projectVar={
-                title:'',
-                projectMonth:'',
-                projectYear:'',
-                skills:[],
-                achievements:['','',''],
-                vis:false
-                ,
-            }
-            let skillsVar={
-                vis:false,
-                title:'',
-                skillSet:[],
-            }
-            let achievementVar={
-                title:' ',
-                lists:[],
-                vis:true,
-            }
-            // const experience = Array(10).fill(0).map(() => ({...experienceVar}));
-           const experience= [{...experienceVar},{...experienceVar},{...experienceVar},{...experienceVar},{...experienceVar},{...experienceVar},{...experienceVar},{...experienceVar},{...experienceVar},{...experienceVar},]
-           const education = [{...eduVar}, {...eduVar}, {...eduVar}, {...eduVar}, {...eduVar}, {...eduVar}, {...eduVar}, {...eduVar}];
-           const projects = [{...projectVar}, {...projectVar}, {...projectVar}, {...projectVar}, {...projectVar}, {...projectVar}, {...projectVar}]; 
-           const technicalSkills = [{...skillsVar},{...skillsVar},{...skillsVar},{...skillsVar},{...skillsVar}] 
-            let eduFieldCount = 0
-            let experienceFieldCount = 0
-            let projectCount = 0
-            let skillLine = 0
-            let skillInputs = [];
-            let techSkillInputs = [];
+    // Pagination Component
+	let progressTracker = 0;
+	let stepArray = [true, false, false, false,false,false,false];
 
-            function addEducation(index){
+	function forward() {
+		if (progressTracker < stepArray.length-1) {
+			stepArray[progressTracker] = false;
+            console.log(progressTracker+'Before')
+			progressTracker++;
+		}
+		if (progressTracker < stepArray.length) {
+            console.log(progressTracker+'After')
+			stepArray[progressTracker] = true;
+		}
+	}
+    function backward() {
+		if (progressTracker > 0) {
+			stepArray[progressTracker] = false;
+			progressTracker--;
+		}
+		if (progressTracker >= 0) {
+			stepArray[progressTracker] = true;
+		}
+	}
 
-                if (index >= 0) {
-                    education[index].vis = true
-                    eduFieldCount++
-                    } else if(index<0) {
-                        education[-index-1].vis = false
-                        eduFieldCount--
-                }
-            }
-            function addExperience(index){
-                if (index >= 0) {
-                experience[index].vis = true
-                experience[index].achievements = ['', '', '', '']
-                experienceFieldCount++
-                } else if(index<0) {
-                        experience[-index-1].vis = false
-                        experienceFieldCount--
-                }
-            }
-            function addProject(index){
-                if (index >= 0) {
-                projects[index].vis = true
-                projects[index].achievements = ['', '', '']
-                projectCount++
-                } else if(index<0) {
-                    projects[-index-1].vis = false
-                    projectCount--
-                    }
-            }
-            function addSkillField(index){
-                if (index >= 0) {
-                technicalSkills[index].vis = true
-                skillLine++
-                } else if(index<0) {
-                    technicalSkills[-index-1].vis = false
-                    skillLine--
-                }
-            }
+	const userDetails = {
+		firstName: '',
+		lastName: '',
+		contact: '',
+		email: '',
+		city: '',
+		state: '',
+		pincode: Number,
+		linkedinUsername: '',
+		gitUsername: ''
+	};
 
-            function addSkill(index) {
-                if (skillInputs[index] !== '') {
-                    projects[index].skills = [...projects[index].skills, skillInputs[index]];
-                    skillInputs[index] = '';
-                }
-            }
-            function addTechSkill(index) {
-                if (techSkillInputs[index] !== '') {
-                    technicalSkills[index].skillSet = [...technicalSkills[index].skillSet, techSkillInputs[index]];
-                    techSkillInputs[index] = '';
-                }
-            }
-            function addAchievement() {
-                if (achievementVar.lists[achievementVar.lists.length - 1] !== '') {
-                    achievementVar.lists = [...achievementVar.lists, ''];
-                }
-            }
-            function deleteAchievement() {
-                if (achievementVar.lists.length > 0) {
-                    achievementVar.lists = achievementVar.lists.slice(0, -1);
-                }
-            }
-            function deleteSkill(index) {
-                if (projects[index].skills.length > 0) {
-                    projects[index].skills = projects[index].skills.slice(0, -1);
-                }
-            }
+	let educationVar = {
+		vis: false,
+		name: '',
+		degree: '',
+		gradeTitle: '',
+		grade: '',
+		city: '',
+		state: '',
+		endMonth: '',
+		endYear: ''
+	};
+	const experienceVar = {
+		companyName: '',
+		startMonth: '',
+		startYear: '',
+		endMonth: '',
+		endYear: '',
+		city: '',
+		state: '',
+		designation: '',
+		achievements: ['', '', '', ''],
+		vis: true
+	};
 
-            function deleteTechSkill(index) {
-                if (technicalSkills[index].skillSet.length > 0) {
-                    technicalSkills[index].skillSet = technicalSkills[index].skillSet.slice(0, -1);
-                }
-            }
-        
-
-            function merger(){
-                latexGenerated = headerPackage+ ' ' +font+' ' + 
-                String.raw`\begin{document}  `+
-                basicDeatils(userDetails.firstName,userDetails.lastName,userDetails.contact,userDetails.email,userDetails.city,userDetails.state,userDetails.pincode,userDetails.linkedinUsername,userDetails.gitUsername)
-                +educateFunction(education)
-                +experienceFunction(experience)
-                +projectFunction(projects)
-                +skillsFunction(technicalSkills)
-                +achievementsFunction(achievementVar)
-                +String.raw`\end{document} `
-            }
+	let projectVar = {
+		title: '',
+		projectMonth: '',
+		projectYear: '',
+		skills: [],
+		achievements: ['', '', ''],
+		vis: false
+	};
+	let skillsVar = {
+		vis: false,
+		title: '',
+		skillSet: []
+	};
+	let achievementVar = {
+		title: ' ',
+		lists: [],
+		vis: true
+	};
+	let experience = [];
+    let education = [];
+	let projects = [];
+	let techskills = [];
 
 
+	function addExperience() {
+		console.log('Adding new experience...');
+		experience.push(JSON.parse(JSON.stringify(experienceVar)));
+		experience = experience;
+	}
+	function deleteExp(index) {
+		experience.splice(index, 1);
+		experience = experience;
+	}
+
+    function addEducation() {
+		console.log('Adding new education...');
+		education.push(JSON.parse(JSON.stringify(educationVar)));
+		education = education;
+	}
+	function deleteEducation(index) {
+		education.splice(index, 1);
+		education = education;
+	}
+
+	function addProject() {
+		console.log('Adding new Project...');
+		projects.push(JSON.parse(JSON.stringify(projectVar)));
+		projects = projects;
+	}
+    function deleteProject(index) {
+		projects.splice(index, 1);
+		projects = projects;
+	}
+    let proj_skills=[]
+
+    function addProjectSkill(project_index){
+        if (proj_skills[project_index] !== '') {
+            projects[project_index].skills.push(proj_skills[project_index])
+            projects[project_index].skills = projects[project_index].skills
+        }
+        proj_skills[project_index]=''
+    }
+    function deleteProjectSkill(project_index,skill_index){
+        projects[project_index].skills.splice(skill_index,1);
+        projects[project_index].skills =  projects[project_index].skills
+    }
+
+    function addTechSkills() {
+		console.log('Adding new Skill Section...');
+		techskills.push(JSON.parse(JSON.stringify(skillsVar)));
+		techskills = techskills;
+	}
+
+    function deleteTechSkills(index) {
+		techskills.splice(index, 1);
+		techskills = techskills;
+	}
+
+    let tech_skill_list=[]
+
+    function addSkill(project_index){
+        if (tech_skill_list[project_index] !== '') {
+            techskills[project_index].skillSet.push(tech_skill_list[project_index])
+            techskills[project_index].skillSet = techskills[project_index].skillSet
+        }
+        tech_skill_list[project_index]=''
+    }
+
+    function deleteSkill(project_index,skill_index){
+        techskills[project_index].skillSet.splice(skill_index,1);
+        techskills[project_index].skillSet =  techskills[project_index].skillSet
+    }
+
+    function addAchievement() {
+		console.log('Adding new Achievement...');
+        achievementVar.lists.push('')
+		achievementVar.lists = achievementVar.lists
+	}
+    function deleteAchievement(index) {
+		achievementVar.lists.splice(index, 1);
+		achievementVar.lists = achievementVar.lists;
+	}
+
+
+	function merger() {
+		latexGenerated =
+			headerPackage +
+			' ' +
+			font +
+			' ' +
+			String.raw`\begin{document}  ` +
+			basicDeatils(
+				userDetails.firstName,
+				userDetails.lastName,
+				userDetails.contact,
+				userDetails.email,
+				userDetails.city,
+				userDetails.state,
+				userDetails.pincode,
+				userDetails.linkedinUsername,
+				userDetails.gitUsername
+			) +
+			educateFunction(education) +
+			experienceFunction(experience) +
+			projectFunction(projects) +
+			skillsFunction(techskills) +
+			achievementsFunction(achievementVar) +
+			String.raw`\end{document}`;
+	}
 </script>
 
-<!-- Basic Details -->
- <div class=" w-full h-full pt-20 sm:pt-24">
 
- 
-  <div class="max-w-5xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-    <div class="text-2xl py-4 px-6 bg-blue-900 text-white text-center font-bold uppercase">
-        Basic Details 
-    </div>
-        <div class="mb-4 px-3 py-1 flex flex-row">
-            <div class="w-full mr-5">
-                <label class="block text-gray-700 font-bold mb-2" for="name">
-                   First Name
-                </label>
-                <input
-                bind:value={userDetails.firstName}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="name" type="text" placeholder="Enter your name">
-            </div>
-            <div class="w-full">
-                <label class="block text-gray-700 font-bold mb-2" for="name">
-                    Last Name
-                </label>
-                <input
-                bind:value={userDetails.lastName}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="name" type="text" placeholder="Enter your name">
-            </div>
-        </div>
-        <div class="mb-4 px-3 py-1 flex flex-row">
-            <div class="w-full mr-5">
-                <label class="block text-gray-700 font-bold mb-2" for="name">
-                   City
-                </label>
-                <input
-                bind:value={userDetails.city}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="name" type="text" placeholder="Enter your name">
-            </div>
-            <div class="w-full mr-5">
-                <label class="block text-gray-700 font-bold mb-2" for="name">
-                   State
-                </label>
-                <input
-                bind:value={userDetails.state}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="name" type="text" placeholder="Enter your name">
-            </div>
-            <div class="w-full">
-                <label class="block text-gray-700 font-bold mb-2" for="name">
-                    pincode
-                </label>
-                <input
-                bind:value={userDetails.pincode}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="name" type="number" placeholder="Pincode">
-            </div>
-        </div>
-        <div class="mb-4 px-3 py-1">
-            <label class="block text-gray-700 font-bold mb-2" for="email">
-                Email
-            </label>
-            <input
-                bind:value={userDetails.email}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="email" type="email" placeholder="Enter your email">
-        </div>
-        <div class="mb-4 px-3 py-1">
-            <label class="block text-gray-700 font-bold mb-2" for="email">
-                Linkedin Username
-            </label>
-            <input
-            bind:value={userDetails.linkedinUsername}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="email" type="email" placeholder="Enter your email">
-        </div>
-        <div class="mb-4 px-3 py-1">
-            <label class="block text-gray-700 font-bold mb-2" for="email">
-                Github Username
-            </label>
-            <input
-            bind:value={userDetails.gitUsername}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="email" type="email" placeholder="Enter your email">
-        </div>
-        <div class="mb-4 px-3 py-1">
-            <label class="block text-gray-700 font-bold mb-2" for="phone">
-                Phone Number
-            </label>
-            <input
-            bind:value={userDetails.contact}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="phone" type="number" placeholder="Enter your phone number">
-        </div>
-       
-       
-  </div>
 
-    <!-- Education -->
-<div class="max-w-5xl mx-auto mt-10 bg-white shadow-lg rounded-lg overflow-hidden">
-    <div class="text-2xl py-4 px-6 mb-4 bg-red-900 text-white text-center font-bold uppercase">
-        Education 
-    </div>
-
-        {#each education as item,index }
-            
-        {#if item.vis}
-        <div 
-        in:slide={{ duration: 600, axis: 'y' }}
-        out:slide={{ duration: 800, axis: 'y' }}
+<!-- beautiful multi step form  -->
+<div class="min-h-screen  pt-20 sm:pt-0 p-6 bg-gray-100 flex items-center justify-center">
+	<div class="container max-w-screen-lg mx-auto">
+		<div
         >
-
-        
-        <div class="mb-4 px-3 py-1 ">
-                <label class="block text-gray-700 font-bold mb-2" for="name">
-                   School/College Name
-                </label>
-                <input
-                bind:value={item.name}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="collegeName{index}" type="text" placeholder="Enter Institution Name">
-        </div>
-        <div class="mb-4 px-3 py-1 ">
-            <label class="block text-gray-700 font-bold mb-2" for="name">
-               Degree with Branch
-            </label>
-            <input
-            bind:value={item.degree}
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="degree{index}" type="text" placeholder="Bachelor of Science in Computer Science ">
-    </div>
-        <div class="mb-4 px-3 py-1 flex flex-row">
-            <div class="w-full mr-5">
-                <label class="block text-gray-700 font-bold mb-2" for="name">
-                   city
-                </label>
-                <input
-                bind:value={item.city}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="edcity{index}" type="text" placeholder="Enter Institution city">
-            </div>
-            <div class="w-full mr-5">
-                <label class="block text-gray-700 font-bold mb-2" for="name">
-                   state
-                </label>
-                <input
-                bind:value={item.state}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="edstate{index}" type="text" placeholder="Enter Institution state">
-            </div>
-        </div>
-
-        <div class="mb-4 px-3 py-1 flex flex-row">
-            <div class="w-full mr-5">
-                <label class="block text-gray-700 font-bold mb-2" for="service">
-                    End Month
-                </label>
-                <select
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="edmonth{index}" name="edmonth{index}" bind:value={item.endMonth}>
-                    <option value="">Select Month</option>
-            <option value="January">January</option>
-            <option value="February">February</option>
-            <option value="March">March</option>
-            <option value="April">April</option>
-            <option value="May">May</option>
-            <option value="June">June</option>
-            <option value="July">July</option>
-            <option value="August">August</option>
-            <option value="September">September</option>
-            <option value="October">October</option>
-            <option value="November">November</option>
-            <option value="December">December</option>
-                </select>
-            </div>
-            <div class="w-full mr-5">
-                <label class="block text-gray-700 font-bold mb-2" for="service">
-                    End Year
-                </label>
-                <input
-                bind:value={item.endYear}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="name" type="number" placeholder="Enter year of Completetion">
-            </div>
-        </div>
-        <div class="mb-4 px-3 py-1 flex flex-row">
-            <div class="w-full mr-5">
-                <label class="block text-gray-700 font-bold mb-2" for="service">
-                    Grade Title
-                </label>
-                <select
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="gradeTitle" name="gradeTitle" bind:value={item.gradeTitle}>
-                    <option value="">Select one</option>
-                    <option value="cgpa">CGPA</option>
-                    <option value="percentage">Percentage</option>
-                </select>
-            </div>
-            <div class="w-full mr-5">
-                <label class="block text-gray-700 font-bold mb-2" for="service">
-                    Grades
-                </label>
-                <input
-                bind:value={item.grade}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="name" type="number" placeholder="92">
-            </div>
-        </div>
-    </div>
-        {/if}
-        {/each}
-
-        <div class="py-4 px-6 mb-4 text-white text-center font-bold uppercase">
-            <button
-            class="bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-            on:click={addEducation(eduFieldCount)}
-            >
-            Add Education
-        </button>
-        <button
-            class="bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-            on:click={addEducation(-eduFieldCount)}
-            >
-            Remove Education
-        </button>
-        </div>
-</div>
-
-<!-- Experience -->
-<div class="max-w-5xl mx-auto mt-10 bg-white shadow-lg rounded-lg overflow-hidden">
-    <div class="text-2xl py-4 px-6 mb-4 bg-emerald-700 text-white text-center font-bold uppercase">
-        Experience 
-    </div>
-
-    {#each experience as item,index }
-        
-    {#if item.vis}
-    <div 
-    in:slide={{ duration: 600, axis: 'y' }}
-    out:slide={{ duration: 800, axis: 'y' }}
-    >
-
-    
-    <div class="mb-4 px-3 py-1 ">
-            <label class="block text-gray-700 font-bold mb-2" for="name">
-               Company Name
-            </label>
-            <input
-            bind:value={item.companyName}
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="companyName{index}" type="text" placeholder="Enter Company Name">
-    </div>
-    <div class="mb-4 px-3 py-1 ">
-        <label class="block text-gray-700 font-bold mb-2" for="name">
-           Designation
-        </label>
-        <input
-        bind:value={item.designation}
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="designation{index}" type="text" placeholder="Enter Designation">
-    </div>
-    <div class="mb-4 px-3 py-1 flex flex-row">
-        <div class="w-full mr-5">
-            <label class="block text-gray-700 font-bold mb-2" for="name">
-               Start Month
-            </label>
-            <select
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="startMonth{index}" name="startMonth{index}" bind:value={item.startMonth}>
-                <option value="">Select Month</option>
-            <option value="January">January</option>
-            <option value="February">February</option>
-            <option value="March">March</option>
-            <option value="April">April</option>
-            <option value="May">May</option>
-            <option value="June">June</option>
-            <option value="July">July</option>
-            <option value="August">August</option>
-            <option value="September">September</option>
-            <option value="October">October</option>
-            <option value="November">November</option>
-            <option value="December">December</option>
-            </select>
-        </div>
-        <div class="w-full mr-5">
-            <label class="block text-gray-700 font-bold mb-2" for="name">
-               Start Year
-            </label>
-            <input
-            bind:value={item.startYear}
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="startYear{index}" type="number" placeholder="eg 2020">
-        </div>
-    </div>
-
-    <div class="mb-4 px-3 py-1 flex flex-row">
-        <div class="w-full mr-5">
-            <label class="block text-gray-700 font-bold mb-2" for="name">
-               End Month
-            </label>
-            <select
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="startMonth{index}" name="startMonth{index}" bind:value={item.endMonth}>
-            <option value="">Select Month</option>
-            <option value="January">January</option>
-            <option value="February">February</option>
-            <option value="March">March</option>
-            <option value="April">April</option>
-            <option value="May">May</option>
-            <option value="June">June</option>
-            <option value="July">July</option>
-            <option value="August">August</option>
-            <option value="September">September</option>
-            <option value="October">October</option>
-            <option value="November">November</option>
-            <option value="December">December</option>
-        </select>
-        </div>
-        <div class="w-full mr-5">
-            <label class="block text-gray-700 font-bold mb-2" for="name">
-               End Year
-            </label>
-            <input
-            bind:value={item.endYear}
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="endYear{index}" type="number" placeholder="eg 2022">
-        </div>
-    </div>
-        <div class="mb-4 px-3 py-1 flex flex-row">
-            <div class="w-full mr-5">
-                <label class="block text-gray-700 font-bold mb-2" for="name">
-                   City
-                </label>
-                <input
-                bind:value={item.city}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="edcity{index}" type="text" placeholder="Enter Company's city / remote">
-            </div>
-            <div class="w-full mr-5">
-                <label class="block text-gray-700 font-bold mb-2" for="name">
-                   State
-                </label>
-                <input
-                bind:value={item.state}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="edstate{index}" type="text" placeholder="Enter Company's state / India if Remote">
-            </div>
-        </div>
-
-        <div class="mb-4 px-3 py-1">
-            <label class="block text-gray-700 font-bold mb-2" for="name">
-               Achievements
-            </label>
-            {#each item.achievements as achievement, achievementIndex}
-                <input
-                bind:value={achievement}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="achievement{index}{achievementIndex}" type="text" placeholder="Enter Your Work {achievementIndex+1}">
-            {/each}
-        </div>
-        </div>
-        {/if}
-        {/each}
-        
-
-        <div class="py-4 px-6 mb-4 text-white text-center font-bold uppercase">
-            <button
-            class="bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-            on:click={addExperience(experienceFieldCount)}
-            >
-            Add Experience
-        </button>
-        <button
-            class="bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-            on:click={addExperience(-experienceFieldCount)}
-            >
-            Remove Experience
-        </button>
-        </div>
-</div>
-
-<!-- Projects -->
-<div class="max-w-5xl mx-auto mt-10 bg-white shadow-lg rounded-lg overflow-hidden">
-    <div class="text-2xl py-4 px-6 mb-4 bg-violet-700 text-white text-center font-bold uppercase">
-        Projects 
-    </div>
-
-    {#each projects as item,index }
-        
-    {#if item.vis}
-    <div 
-    in:slide={{ duration: 600, axis: 'y' }}
-    out:slide={{ duration: 800, axis: 'y' }}
-    >
-
-    
-    <div class="mb-4 px-3 py-1 ">
-            <label class="block text-gray-700 font-bold mb-2" for="name">
-               Project Title
-            </label>
-            <input
-            bind:value={item.title}
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="companyName{index}" type="text" placeholder="Enter Company Name">
-    </div>
-
-    <div class="mb-4 px-3 py-1 flex flex-row">
-        <div class="w-full mr-5">
-            <label class="block text-gray-700 font-bold mb-2" for="name">
-               Project Month
-            </label>
-            <select
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="startMonth{index}" name="startMonth{index}" bind:value={item.startMonth}>
-                <option value="">Select Month</option>
-            <option value="January">January</option>
-            <option value="February">February</option>
-            <option value="March">March</option>
-            <option value="April">April</option>
-            <option value="May">May</option>
-            <option value="June">June</option>
-            <option value="July">July</option>
-            <option value="August">August</option>
-            <option value="September">September</option>
-            <option value="October">October</option>
-            <option value="November">November</option>
-            <option value="December">December</option>
-            </select>
-        </div>
-        <div class="w-full mr-5">
-            <label class="block text-gray-700 font-bold mb-2" for="name">
-               Project Year
-            </label>
-            <input
-            bind:value={item.startYear}
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="startYear{index}" type="number" placeholder="eg 2020">
-        </div>
-    </div>
-        <div class="mb-4 px-3 py-1">
-            <label class="block text-gray-700 font-bold mb-2" for="name">
-               Achievements
-            </label>
-            {#each item.achievements as achievement, achievementIndex}
-            <input
-            bind:value={achievement}
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="achievement{index}{achievementIndex}" type="text" placeholder="Enter Your Work {achievementIndex+1}">
-            {/each}
-        </div>
-        </div>
-        
-
-        <div class="mb-4 px-3 py-1 ">
-           
-            <label class="block text-gray-700 font-bold mb-2" for="name">
-               Add Skill Used
-            </label>
-           
-            <input
-                bind:value={skillInputs[index]}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="companyName{index}" 
-                type="text" placeholder="Enter Company Name">
-            
-            <button class="bg-gray-900 my-2 rounded text-white py-2 px-4" 
-                on:click={() => addSkill(index)}>Add Skill</button>
-            <button class="bg-gray-900 my-2 rounded text-white py-2 px-4" 
-                on:click={() => deleteSkill(index)}>Delete Skill</button>
-            
-            <div class="w-full">
-                {#each item.skills as ele,indexx }
-                    <!-- <span class='bg-emerald-50 text-emerald-600 border border-emerald-400 text-xs font-medium mr-2 px-1.5 rounded-full py-1'>{ele}</span> -->
-                    <span id="badge-dismiss-default" class="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-blue-900 dark:text-blue-300">
-                        {ele}
-                        <button type="button" 
-                        on:click={() => deleteSkill(indexx)}
-                        class="inline-flex items-center p-1 ms-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-300" data-dismiss-target="#badge-dismiss-default" aria-label="Remove">
-                        <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                        </svg>
-                        <span class="sr-only">Remove badge</span>
-                        </button>
-                        </span>
-                    {/each}
-            </div>
-            
-    </div>
-    {/if}
-    {/each}
-        
-
-        <div class="py-4 px-6 mb-4 text-white text-center font-bold uppercase">
-            <button
-            class="bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-            on:click={addProject(projectCount)}
-            >
-            Add Projects
-        </button>
-        <button
-            class="bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-            on:click={addProject(-projectCount)}
-            >
-            Remove Project
-        </button>
-        </div>
-</div>
-
-<!-- skills -->
-<div class="max-w-5xl mx-auto mt-10 bg-white shadow-lg rounded-lg overflow-hidden">
-    <div class="text-2xl py-4 px-6 mb-4 bg-lime-600  text-white text-center font-bold uppercase">
-        Technical Skills 
-    </div>
-
-    {#each technicalSkills as item,index }
-        {#if item.vis}
-        <div 
-        in:slide={{ duration: 600, axis: 'y' }}
-        out:slide={{ duration: 800, axis: 'y' }}
-        >
-
-            <div class="mb-4 px-3 py-1 flex flex-col sm:flex-row">
-                <div>
-                    <label class="block text-gray-700 font-bold mb-2" for="name">
-                    Title
-                    </label>
-                    <input
-                    bind:value={item.title}
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="companyName{index}" type="text" placeholder="eg: Languages">
-                </div> 
-                <div class="w-full">
-                    <label class="block text-gray-700 font-bold mb-2" for="name">
-                    Skills Under {item.title}
-                    </label>
-                    
-                    <input
-                        bind:value={techSkillInputs[index]}
-                        class="shadow appearance-none border rounded w-full py-2 px-3 ml-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="companyName{index}" type="text" 
-                        placeholder="eg Java">
-                    
-                    <button class="bg-gray-900 mt-2 text-white text-sm py-1 px-2 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-                        on:click={()=>addTechSkill(index)}
-                    >Add SKill</button>
-                    
-                    <button class="bg-gray-900 mt-2 text-white text-sm py-1 px-2 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-                        on:click={()=>deleteTechSkill(index)}
-                    >Delete SKill</button>
-
-                        <div class="w-full flex flex-row flex-wrap">
-                            {#each item.skillSet as ele }
-                                <span class='bg-emerald-50 m-1 text-emerald-600 border border-emerald-400 text-xs font-medium mr-2 px-1.5 rounded-full py-1'>{ele}</span>
-                            {/each}
+			<div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
+                <!-- Personal Details -->
+                {#if stepArray[0]}
+                <div 
+                in:scale={{delay:100,duration:300,start:1.1}}
+                class="flex flex-col min-h-64 md:flex-row p-4 px-4 md:p-8 mb-6">
+                    <div class="text-gray-600">
+						<p class="font-medium text-lg">Personal Details</p>
+						<p>Please fill out all the fields.</p>
+					</div>
+                    <div class="w-full flex flex-col sm:px-3 ">
+                        <div class="flex flex-col sm:flex-row w-full my-2 ">
+                            <div class="w-full flex flex-col px-1  my-2 sm:my-0">
+                                <div class="relative">
+                                    <input type="text" id="firstname" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="firstname" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">First Name</label>
+                                </div>
+                            </div>
+                            <div class="w-full flex flex-col px-1  my-2 sm:my-0">
+                                <div class="relative">
+                                    
+                                    <input type="text" id="lastname" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="lastname" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        Last Name</label>
+                                </div>
+                            </div>
                         </div>
-                </div> 
-                   
+                        <div class="flex flex-col sm:flex-row w-full my-2">
+                            <div class="w-full flex flex-col px-1  my-2 sm:my-0">
+                                <div class="relative">
+                                    <input type="text" id="user_city" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="user_city" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        City</label>
+                                </div>
+                            </div>
+                            <div class="w-full flex flex-col px-1  my-2 sm:my-0">
+                                <div class="relative">
+                                    <input type="text" id="user_state" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="user_state" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        State</label>
+                                </div>
+                            </div>
+                            <div class="w-full flex flex-col px-1  my-2 sm:my-0">
+                                <div class="relative">
+                                    <input type="text" id="user_pincode" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="user_pincode" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        Pincode</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row w-full my-2">
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-0">
+                                <div class="relative">
+                                    <input type="email" id="user_email" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="user_email" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        Email</label>
+                                </div>
+                            </div>
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-0">
+                                <div class="relative">
+                                    <input type="number" id="user_number" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="user_number" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        Phone Number</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row w-full my-2">
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-0 ">
+                                <div class="relative">
+                                    <input type="text" id="user_github" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="user_github" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        Github (Username Only)</label>
+                                        
+                                </div>
+                            </div>
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-0">
+                                <div class="relative">
+                                    <input type="text" id="user_linkedin" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="user_linkedin" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        LinkedIn (Username Only)</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        
+                        
+                </div>
+                {/if}
+
+
+                <!-- Education Details -->
+                {#if stepArray[1]}
+                <div 
+                in:scale={{delay:100,duration:300,start:1.1}}
+                class="flex flex-col min-h-64 md:flex-row p-4 px-4 md:p-8 mb-6">
+                        
+                    <div class="text-gray-600">
+						<p class="font-medium text-lg">Education Details</p>
+						<p>Please fill out all the fields.</p>
+					</div>
+                    
+                    <div class="w-full flex flex-col sm:px-3 ">
+                        {#each education as item,index }
+                        <div in:slide={{duration:500}} out:slide={{duration:500}} >
+                        <div class="flex flex-col sm:flex-row w-full my-2 ">
+                            <div class="w-full flex flex-row items-center px-1 my-2 sm:my-0">
+                                <div class="relative w-full">
+                                    <input type="text" 
+                                    bind:value={item.name}
+                                    id="edu_name{index}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="edu_name{index}" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        College/School Name </label>
+                                </div>
+                                <button on:click={()=>{deleteEducation(index)}} class="w-10 p-1 text-red-600 rounded-full">
+                                    <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="w-7" viewBox="0 0 16 16">
+                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+                                      </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row w-full my-2 ">
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-0">
+                                <div class="relative">
+                                    <input type="text" 
+                                    bind:value={item.degree}
+                                    id="edu_degree{index}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="edu_degree{index}" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        Degree With Branch </label>
+                                </div>
+                                <p class=" px-2 text-xs sm:text-sm  text-gray-500" >Eg: Bachelor of Science in Computer Science</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row w-full my-2">
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-0">
+                                <div class="relative">
+                                    <input type="text" 
+                                    bind:value={item.city}
+                                    id="edu_city{index}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="edu_city{index}" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        City</label>
+                                </div>
+                            </div>
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-0">
+                                <div class="relative">
+                                    <input type="text" 
+                                    bind:value={item.state}
+                                    id="edu_state{index}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="edu_state{index}" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        State</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row w-full my-2">
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-0 ">
+                                <div class="relative">
+                                    <label for="edu_end_month{index}" class="block text-sm font-medium text-gray-600 ">
+                                        End Month</label>
+                                    <select 
+                                    bind:value={item.endMonth}
+                                    id="edu_end_month{index}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                        <option value="">Select Month</option>
+                                        <option value="January">January</option>
+                                        <option value="February">February</option>
+                                        <option value="March">March</option>
+                                        <option value="April">April</option>
+                                        <option value="May">May</option>
+                                        <option value="June">June</option>
+                                        <option value="July">July</option>
+                                        <option value="August">August</option>
+                                        <option value="September">September</option>
+                                        <option value="October">October</option>
+                                        <option value="November">November</option>
+                                        <option value="December">December</option>
+                                    </select>
+                                        
+                                </div>
+                            </div>
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-3">
+                                <div class="relative">
+                                    <input type="number" 
+                                    bind:value={item.endYear}
+                                    id="edu_end_year{index}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="edu_end_year{index}" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        End Year</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row w-full my-2">
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-0 ">
+                                <div class="relative">
+                                    <label for="gradeTitle{index}" class="block text-sm font-medium text-gray-600 ">
+                                        Grade Title</label>
+                                    <select 
+                                    bind:value={item.gradeTitle}
+                                    id="gradeTitle{index}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                      <option selected>Choose grade Type</option>
+                                      <option value="cgpa">CGPA</option>
+                                      <option value="percentage">Percentage</option>
+                                    </select>
+                                        
+                                </div>
+                            </div>
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-3">
+                                <div class="relative">
+                                    <input type="number" 
+                                    bind:value={item.grade}
+                                    id="edu_grade{index}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="edu_grade{index}" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        Grade</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        {/each}
+                        <div class="w-full flex flex-row justify-center">
+                            <button 
+                            on:click={()=>addEducation()}
+                            type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                Add Education 
+                            </button>
+                        </div>
+                    </div>
+                    
+                </div>
+                {/if}
+
+
+                <!-- Experience Details -->
+                {#if stepArray[2]}
+                <div 
+                in:scale={{delay:100,duration:300,start:1.1}}
+                
+                class="flex flex-col min-h-64 md:flex-row p-4 px-4 md:p-8 mb-6">
+                    <div class="text-gray-600">
+						<p class="font-medium text-lg">Experience Details</p>
+						<p>Please fill out all the fields.</p>
+					</div>
+
+
+                    <div class="w-full flex flex-col sm:px-3 ">
+                    {#each experience as item,index }
+                        <div in:slide={{duration:500}} out:slide={{duration:500}} >
+                    
+                        <div class="flex flex-col sm:flex-row w-full my-2 ">
+                            <div class="w-full flex flex-row items-center px-1 my-2 sm:my-0">
+                                <div class="relative w-full">
+                                    <input 
+                                    bind:value={item.companyName}
+                                    type="text" id="exp_company_{index}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="exp_company_{index}" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        Company's Name </label>
+                                </div>
+                                <button 
+                                on:click={()=>{deleteExp(index)}}
+                                class="w-10 p-1 text-red-600 rounded-full">
+                                    <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="w-7" viewBox="0 0 16 16">
+                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+                                      </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row w-full my-2 ">
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-0">
+                                <div class="relative">
+                                    <input 
+                                    bind:value={item.designation}
+                                    type="text" id="exp_desig{index}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="exp_desig{index}" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        Designation </label>
+                                </div>
+                                <!-- <p class=" px-2 text-xs sm:text-sm  text-gray-500" >Eg: Bachelor of Science in Computer Science</p> -->
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row w-full my-2">
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-0">
+                                <div class="relative">
+                                    <input 
+                                    bind:value={item.city}
+                                    type="text" id="exp_city_{index}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="exp_city_{index}" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        City</label>
+                                </div>
+                            </div>
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-0">
+                                <div class="relative">
+                                    <input 
+                                    bind:value={item.state}
+                                    type="text" id="exp_state_{index}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="exp_state_{index}" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        State</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row w-full my-2">
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-0 ">
+                                <div class="relative">
+                                    <label for="exp_startmonth_{index}" class="block text-sm font-medium text-gray-600 ">
+                                        Start Month</label>
+                                    <select 
+                                    bind:value={item.startMonth}
+                                    id="exp_startmonth_{index}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                        <option value="">Select Month</option>
+                                        <option value="January">January</option>
+                                        <option value="February">February</option>
+                                        <option value="March">March</option>
+                                        <option value="April">April</option>
+                                        <option value="May">May</option>
+                                        <option value="June">June</option>
+                                        <option value="July">July</option>
+                                        <option value="August">August</option>
+                                        <option value="September">September</option>
+                                        <option value="October">October</option>
+                                        <option value="November">November</option>
+                                        <option value="December">December</option>
+                                    </select>
+                                        
+                                </div>
+                            </div>
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-3">
+                                <div class="relative">
+                                    <input 
+                                    bind:value={item.startYear}
+                                    type="number" id="exp_startyear_{index}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="exp_startyear_{index}" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        Start Year</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row w-full my-2">
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-0 ">
+                                <div class="relative">
+                                    <label for="endMonth{index}" class="block text-sm font-medium text-gray-600 ">
+                                        End Month</label>
+                                    <select 
+                                    bind:value={item.endMonth}
+                                    id="endMonth{index}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="">Select Month</option>
+                                    <option value="January">January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
+                                    </select>
+                                        
+                                </div>
+                            </div>
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-3">
+                                <div class="relative">
+                                    <input 
+                                    bind:value={item.endYear}
+                                    type="number" id="end_year_{index}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="end_year_{index}" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        End Year</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row w-full my-2">
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-0 ">
+                                <div class="relative">
+                                    <label for="" class="block text-sm font-medium text-gray-600 ">
+                                        Enter Your Contributions</label>
+                                {#each item.achievements as element }
+                                    <input 
+                                    bind:value={element}
+                                    type="text" class="w-full my-1 px-2.5 pb-2.5 pt-2.5 text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600" placeholder="Enter Work" >  
+                                {/each}
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        {/each}
+                        <div class="w-full flex flex-row justify-center">
+                            <button 
+                            on:click={addExperience}
+                            type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                Add Experience 
+                            </button>
+                        </div>
+                    </div>
+                        
+                        
+                </div>
+                {/if}
+
+
+                <!-- Project Details -->
+                {#if stepArray[3]}
+                <div 
+                in:scale={{delay:100,duration:300,start:1.1}}
+                
+                class="flex flex-col min-h-64 md:flex-row p-4 px-4 md:p-8 mb-6">
+                    <div class="text-gray-600">
+						<p class="font-medium text-lg">Project Details</p>
+						<p>Please fill out all the fields.</p>
+					</div>
+
+
+                    <div class="w-full flex flex-col sm:px-3 ">
+                        <!-- Top -->
+                    {#each projects as item,index }
+                    <div in:slide={{duration:500}} out:slide={{duration:500}} >
+                        <div class="flex flex-col sm:flex-row w-full my-2 ">
+                            <div class="w-full flex flex-row items-center px-1 my-2 sm:my-0">
+                                <div class="relative w-full">
+                                    <input 
+                                    bind:value={item.title}
+                                    type="text" id="project_name_{index}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="project_name_{index}" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        Project's Name </label>
+                                </div>
+                                <button 
+                                on:click={()=>{deleteProject(index)}}
+                                class="w-10 p-1 text-red-600 rounded-full">
+                                    <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="w-7" viewBox="0 0 16 16">
+                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+                                      </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row w-full my-2">
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-0 ">
+                                <div class="relative">
+                                    <label for="proj_month_{index}" class="block text-sm font-medium text-gray-600 ">
+                                        Project Month</label>
+                                    <select id="proj_month_{index}" 
+                                    bind:value={item.projectMonth}
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="">Select Month</option>
+                                    <option value="January">January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
+                                    </select>
+                                        
+                                </div>
+                            </div>
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-3">
+                                <div class="relative">
+                                    <input 
+                                    bind:value={item.projectYear}
+                                    type="number" id="project_year_{index}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="project_year_{index}" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        Project Year</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row w-full my-2">
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-0 ">
+                                <div class="relative">
+                                    <label for="" class="block text-sm font-medium text-gray-600 ">
+                                        Achievements</label>
+                                        {#each item.achievements as element }
+                                        <input bind:value={element} type="text" class="w-full my-1 px-2.5 pb-2.5 pt-2.5 text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600" placeholder="Enter Work done" >  
+                                        {/each}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row w-full my-2">
+                            <div class="w-full relative">
+                                <input 
+                                bind:value={proj_skills[index]}
+                                type="text" id="project_skills_{index}" class=" block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                <label for="project_skills_{index}" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                    Add Skills Used</label>
+                            </div>
+                            <button 
+                            on:click={()=>{addProjectSkill(index)}}
+                            class="w-10 p-1 text-black rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-7 m-1" viewBox="0 0 16 16">
+                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                                  </svg>
+                            </button>
+                        </div>
+                        <div class="flex flex-col overflow-hidden sm:flex-row flex-wrap w-full my-2">
+                            {#each item.skills as skill,skillindex }
+                                <button
+                                on:click={()=>{deleteProjectSkill(index,skillindex)}}
+                                class="inline-flex m-1 items-center bg-green-100 text-green-800 px-2 py-0.5 rounded-md text-sm">
+                                    <svg class="cursor-pointer h-4 w-4 text-green-900"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                    <div class="select-none">
+                                        {skill}
+                                    </div>
+                                </button>
+                            {/each}
+
+                        </div>
+                    </div>
+                    {/each}
+
+                        <div class="w-full flex flex-row justify-center mt-5">
+                            <button 
+                            on:click={addProject}
+                            type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                Add Project 
+                            </button>
+                        </div>
+                    </div> 
+                </div>
+                {/if}
+
+
+                <!-- Technical Skills -->
+                {#if stepArray[4]}
+                <div 
+                in:scale={{delay:100,duration:300,start:1.1}}
+                class="flex flex-col min-h-64 md:flex-row p-4 px-4 md:p-8 mb-6">
+                    <div class="text-gray-600">
+						<p class="font-medium text-lg">Enter Your Skills</p>
+						<p>Please fill out all the fields.</p>
+					</div>
+                    <div class="w-full flex flex-col sm:px-3 ">
+                        <!-- Top -->
+                        {#each techskills as item,index}
+                        <div in:slide={{duration:500}} out:slide={{duration:500}} >
+
+                        <div class="flex flex-col sm:flex-row w-full my-2">
+                            <div class="w-full flex flex-col px-1 my-2 sm:my-0 ">
+                                <div class="flex flex-row w-full">
+                                    <div class="relative w-full">
+                                        <input type="text" id="floating_outlined" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                        <label for="floating_outlined" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                            Title</label>
+                                    </div>
+                                    <button 
+                                    on:click={()=>{deleteTechSkills(index)}}
+                                    class="w-10 p-1 text-red-600 rounded-full">
+                                        <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="w-7" viewBox="0 0 16 16">
+                                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <p class="mx-1 text-xs sm:text-sm text-gray-600">Eg: Back-End /Languages</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row w-full my-2">
+                            <div class="w-full relative">
+                                <input 
+                                bind:value={tech_skill_list[index]}
+                                type="text" id="project_skills_{index}" class=" block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                <label for="project_skills_{index}" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                    Add Skills Used</label>
+                            </div>
+                            <button 
+                            on:click={()=>{addSkill(index)}}
+                            class="w-10 p-1 text-black rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-7 m-1" viewBox="0 0 16 16">
+                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                                  </svg>
+                            </button>
+                        </div>
+                        <div class="flex flex-col overflow-hidden sm:flex-row flex-wrap w-full my-2">
+                            {#each item.skillSet as skill,skillindex }
+                                <button
+                                on:click={()=>{deleteSkill(index,skillindex)}}
+                                class="inline-flex m-1 items-center bg-green-100 text-green-800 px-2 py-0.5 rounded-md text-sm">
+                                    <svg class="cursor-pointer h-4 w-4 text-green-900"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                    <div class="select-none">
+                                        {skill}
+                                    </div>
+                                </button>
+                            {/each}
+
+                        </div>
+                        </div>
+                        {/each}
+
+                        <div class="w-full flex flex-row justify-center mt-5">
+                            <button 
+                            on:click={addTechSkills}
+                            type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                Add Skill Section 
+                            </button>
+                        </div>
+                    </div> 
+                </div>
+                {/if}
+
+                <!-- certificates / extracurricular -->
+                {#if stepArray[5]}
+                <!-- Leadership Skills -->
+                <div 
+                in:scale={{delay:100,duration:300,start:1.1}}
+                class="flex flex-col min-h-64 md:flex-row p-4 px-4 md:p-8 mb-6">
+                    <div class="text-gray-600">
+						<p class="font-medium text-lg">Enter Your Extra's</p>
+						<p>Please fill out all the fields.</p>
+					</div>
+                    <div class="w-full flex flex-col sm:px-3 ">
+                        <!-- Top -->
+                        <div class="flex flex-col sm:flex-row w-full my-2">
+                            <div class="flex flex-col sm:flex-row w-full my-2">
+                                <div class="w-full flex flex-col px-1 my-2 sm:my-0 ">
+                                    <div class="relative">
+                                        <label for="countries" class="block text-sm font-medium text-gray-600 ">
+                                            Select Category</label>
+                                        <select id="countries" 
+                                        bind:value={achievementVar.title}
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                            <option value=" " selected>Select Title</option>
+                                            <option value="Certificates">Certificates</option>
+                                            <option value="Achievements">Achievements</option>
+                                            <option value="Leadership">Leadership</option>
+                                            <option value="Extra Curricular">Extra Curricular</option>
+                                        </select>
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {#each achievementVar.lists as item,index }
+                        <div class="w-full flex flex-col px-1 my-2 sm:my-0 ">
+                            <div class="flex flex-row w-full">
+                                <div class="relative w-full">
+                                    <input 
+                                    bind:value={item}
+                                    type="text" id="achievement{index}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="achievement{index}" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
+                                        Write Achievement</label>
+                                </div>
+                                <button 
+                                on:click={()=>{deleteAchievement(index)}}
+                                class="w-10 p-1 text-red-600 rounded-full">
+                                    <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="w-7" viewBox="0 0 16 16">
+                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <p class="m-1 text-gray-400 " >Eg: Crossed 4000 rating on Codeforces</p>
+                        </div>
+                        {/each}
+
+                        <div class="w-full flex flex-row justify-center mt-5">
+                            <button 
+                            on:click={addAchievement}
+                            type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                Add Achievements
+                            </button>
+                        </div>
+                    </div> 
+                </div>
+                {/if}
+
+                {#if stepArray[6]}
+                <div 
+                in:scale={{delay:100,duration:300,start:1.1}}
+                class="flex flex-col min-h-64 p-4 px-4 md:p-8 mb-6">
+                    <div class="w-full flex flex-row justify-center">
+                        <img class="w-32 h-32" src="/verified.png" alt="">
+                    </div>
+                    <div class="w-full text-center">
+                        <h1 class="font-bold text-lg ">Latex Generated</h1>
+                    </div>
+                    <div class="w-full text-center mt-5">
+                        <Glowbtn title='View PDF' />
+                    </div>
+                </div>
+                {/if}
+
+                <!-- pagination button -->
+                <div class="w-full flex flex-row justify-end">
+                    <button 
+                    type="button" 
+                    on:click={backward}
+                    class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                        Previous
+                    </button>
+                        <button 
+                        type="button" 
+                        on:click={forward}
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                            Next 
+                        </button>
+                </div>
+
             </div>
-
-        </div>
-            
-        {/if}
-    {/each}
-        
-
-        <div class="py-4 px-6 mb-4 text-white text-center font-bold uppercase">
-            <button
-            class="bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-            on:click={addSkillField(skillLine)}
-            >
-            Add Row
-        </button>
-        <button
-        class="bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-        on:click={addSkillField(-skillLine)}
-        >
-        Remove Row
-    </button>
-        </div>
+		</div>
+	</div>
 </div>
-
-<!-- Leadership / Extracurricular  -->
-<div class="max-w-5xl mx-auto mt-10 bg-white shadow-lg rounded-lg overflow-hidden">
-    <div class="text-2xl py-4 px-6 mb-4 bg-cyan-600   text-white text-center font-bold uppercase">
-        Leadership / Extracurricular 
-    </div>
-    <div class="mb-4 px-3 py-1">
-        <div class="w-full">
-            <label class="block text-gray-700 font-bold mb-2" for="name">
-               Select Category 
-            </label>
-            <select
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="startMonth" name="startMonth" bind:value={achievementVar.title}>
-                <option value=" " selected>Select Title</option>
-                <option value="Certificates">Certificates</option>
-                <option value="Achievements">Achievements</option>
-                <option value="Leadership">Leadership</option>
-                <option value="Extra Curricular">Extra Curricular</option>
-            </select>
-        </div>
-    </div>
-    
-    {#each achievementVar.lists as item, index}
-        <div class="mb-4 px-3 py-1">
-            <input
-                bind:value={item}
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="achievement" type="text" placeholder="Enter {achievementVar.title}">
-        </div>
-    {/each}
-        
-    <div class="py-4 px-6 mb-4  text-white text-center font-bold uppercase">
-        <button
-        class="bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-        on:click={addAchievement}
-        >
-            Add {achievementVar.title}
-        </button>
-
-        <button
-            class="bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-            on:click={deleteAchievement}
-            >
-            Delete Row
-        </button>
-</div>
-</div>
-<!-- Form Submission -->
-<form action="https://www.overleaf.com/docs" method="post" target="_blank">
-    <textarea rows="8" cols="60" name="snip" bind:value={latexGenerated} hidden></textarea>
-    <div class="flex items-center justify-center mb-4 px-3 py-1">
-        <button
-            class="bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-            on:click={merger}
-            value="Open in Overleaf"
-            type="button">
-            Generate
-        </button>
-    </div>
-    <div class="flex items-center justify-center mb-4 px-3 py-1">
-        <button
-            class="bg-gray-900 text-white py-2 px-4 rounded hover:bg-gray-800 focus:outline-none focus:shadow-outline"
-            value="Open in Overleaf"
-            type="submit">
-            Create PDF
-        </button>
-    </div>
-</form>
-
-{latexGenerated}
-</div>
-
-  
