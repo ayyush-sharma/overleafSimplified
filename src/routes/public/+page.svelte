@@ -17,6 +17,7 @@
 	let stepArray = [true, false, false, false,false,false,false];
 
 	function forward() {
+        merger()
 		if (progressTracker < stepArray.length-1) {
 			stepArray[progressTracker] = false;
             console.log(progressTracker+'Before')
@@ -204,8 +205,6 @@
 	}
 </script>
 
-
-
 <!-- beautiful multi step form  -->
 <div class="min-h-screen p-6 bg-gray-100 flex ">
 	<div class="container max-w-screen-lg mt-20 mx-auto">
@@ -225,14 +224,18 @@
                         <div class="flex flex-col sm:flex-row w-full my-2 ">
                             <div class="w-full flex flex-col px-1  my-2 sm:my-0">
                                 <div class="relative">
-                                    <input type="text" id="firstname" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input 
+                                    bind:value={userDetails.firstName}
+                                    type="text" id="firstname" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                     <label for="firstname" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">First Name</label>
                                 </div>
                             </div>
                             <div class="w-full flex flex-col px-1  my-2 sm:my-0">
                                 <div class="relative">
                                     
-                                    <input type="text" id="lastname" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input type="text" 
+                                    bind:value={userDetails.lastName}
+                                    id="lastname" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                     <label for="lastname" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
                                         Last Name</label>
                                 </div>
@@ -241,21 +244,27 @@
                         <div class="flex flex-col sm:flex-row w-full my-2">
                             <div class="w-full flex flex-col px-1  my-2 sm:my-0">
                                 <div class="relative">
-                                    <input type="text" id="user_city" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input 
+                                    bind:value={userDetails.city}
+                                    type="text" id="user_city" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                     <label for="user_city" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
                                         City</label>
                                 </div>
                             </div>
                             <div class="w-full flex flex-col px-1  my-2 sm:my-0">
                                 <div class="relative">
-                                    <input type="text" id="user_state" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input type="text" 
+                                    bind:value={userDetails.state}
+                                    id="user_state" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                     <label for="user_state" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
                                         State</label>
                                 </div>
                             </div>
                             <div class="w-full flex flex-col px-1  my-2 sm:my-0">
                                 <div class="relative">
-                                    <input type="text" id="user_pincode" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input type="number" 
+                                    bind:value={userDetails.pincode}
+                                    id="user_pincode" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                     <label for="user_pincode" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
                                         Pincode</label>
                                 </div>
@@ -264,14 +273,18 @@
                         <div class="flex flex-col sm:flex-row w-full my-2">
                             <div class="w-full flex flex-col px-1 my-2 sm:my-0">
                                 <div class="relative">
-                                    <input type="email" id="user_email" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input type="email"
+                                    bind:value={userDetails.email}
+                                    id="user_email" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                     <label for="user_email" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
                                         Email</label>
                                 </div>
                             </div>
                             <div class="w-full flex flex-col px-1 my-2 sm:my-0">
                                 <div class="relative">
-                                    <input type="number" id="user_number" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input type="number" 
+                                    bind:value={userDetails.contact }
+                                    id="user_number" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                     <label for="user_number" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
                                         Phone Number</label>
                                 </div>
@@ -280,7 +293,9 @@
                         <div class="flex flex-col sm:flex-row w-full my-2">
                             <div class="w-full flex flex-col px-1 my-2 sm:my-0 ">
                                 <div class="relative">
-                                    <input type="text" id="user_github" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input type="text"
+                                    bind:value={userDetails.gitUsername}
+                                    id="user_github" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                     <label for="user_github" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
                                         Github (Username Only)</label>
                                         
@@ -288,7 +303,9 @@
                             </div>
                             <div class="w-full flex flex-col px-1 my-2 sm:my-0">
                                 <div class="relative">
-                                    <input type="text" id="user_linkedin" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <input 
+                                    bind:value={userDetails.linkedinUsername}
+                                    type="text" id="user_linkedin" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                     <label for="user_linkedin" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
                                         LinkedIn (Username Only)</label>
                                 </div>
@@ -322,7 +339,7 @@
                                     bind:value={item.name}
                                     id="edu_name{index}" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                     <label for="edu_name{index}" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-                                        College/School Name </label>
+                                        College/School Name {item.name}  </label>
                                 </div>
                                 <button on:click={()=>{deleteEducation(index)}} class="w-10 p-1 text-red-600 rounded-full">
                                     <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="w-7" viewBox="0 0 16 16">
@@ -748,7 +765,9 @@
                             <div class="w-full flex flex-col px-1 my-2 sm:my-0 ">
                                 <div class="flex flex-row w-full">
                                     <div class="relative w-full">
-                                        <input type="text" id="floating_outlined" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                        <input 
+                                        bind:value={item.title}
+                                        type="text" id="floating_outlined" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                                         <label for="floating_outlined" class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
                                             Title</label>
                                     </div>
@@ -881,12 +900,23 @@
                     <div class="w-full flex flex-row justify-center">
                         <img class="w-32 h-32" src="/verified.png" alt="">
                     </div>
-                    <div class="w-full text-center">
-                        <h1 class="font-bold text-lg ">Latex Generated</h1>
+                    <div class="w-full text-center mb-5">
+                        <h1 class="font-bold text-lg ">ATS Friendly Resume Created</h1>
                     </div>
-                    <div class="w-full text-center mt-5">
-                        <Glowbtn title='View PDF' />
-                    </div>
+
+                    <form action="https://www.overleaf.com/docs" method="post" target="_blank">
+                        <textarea rows="8" cols="60" name="snip" bind:value={latexGenerated} hidden></textarea>
+
+                        <div class="flex items-center justify-center mb-4 px-3 py-1">
+                            <button
+                                class=""
+                                value="Open in Overleaf"
+                                type="submit"
+                            >
+                            <Glowbtn title='View PDF' />
+                            </button>
+                        </div>
+                    </form>
                 </div>
                 {/if}
 

@@ -5,7 +5,6 @@ export default function experienceFunction(experience){
   \resumeSubHeadingListStart
   `
     experience.forEach(element => {
-        if(element.vis){
             latex = latex+String.raw`
             \resumeSubheading
                 {${element.companyName}}{${element.startMonth} ${element.startYear} -- ${element.endMonth} ${element.endYear}}
@@ -17,7 +16,6 @@ export default function experienceFunction(experience){
                 \resumeItem{${element.achievements[3]}}
                 \resumeItemListEnd
             `
-        }
     });
 
     return header+latex+String.raw`

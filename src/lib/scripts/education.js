@@ -6,7 +6,6 @@ export default function educateFunction(education){
   
   `
     education.forEach(element => {
-        if(element.vis){
             latex = latex+String.raw`
             \resumeSubheading
                 {${element.name}}{${element.city}, ${element.state}}
@@ -14,7 +13,6 @@ export default function educateFunction(education){
                 \\
                 {${element.gradeTitle}: ${element.grade}}
             `
-        }
     });
 
     return header+latex+String.raw`

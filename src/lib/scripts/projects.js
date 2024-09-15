@@ -8,7 +8,6 @@ export default function projectFunction(projects){
     \resumeSubHeadingListStart
   `
     projects.forEach(element => {
-        if(element.vis){
             let skillset = ''
             element.skills.forEach(ele=>{
                 skillset=skillset+ele+', '
@@ -23,7 +22,6 @@ export default function projectFunction(projects){
                 \resumeItem{${element.achievements[2]}}
                 \resumeItemListEnd
             `
-        }
     });
 
     return header+latex+String.raw`

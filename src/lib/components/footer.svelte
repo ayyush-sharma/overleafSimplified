@@ -3,8 +3,8 @@
         <div class="lg:flex">
             <div class="w-full -mx-6 lg:w-2/5">
                 <div class="px-6">
-                    <a href="#">
-                        <img class="w-auto h-7" src="https://merakiui.com/images/full-logo.svg" alt="">
+                    <a href="/">
+                        <img class="w-auto h-20" src="/logohd.png" alt="">
                     </a>
 
                     <p class="max-w-sm mt-2 text-gray-500 ">Made in India for World ❤️</p>
@@ -61,15 +61,15 @@
 
                     <div>
                         <h3 class="text-gray-700 uppercase">Products</h3>
-                        <a href="#" class="block mt-2 text-sm text-gray-600  hover:underline">Mega cloud</a>
-                        <a href="#" class="block mt-2 text-sm text-gray-600  hover:underline">Aperion UI</a>
-                        <a href="#" class="block mt-2 text-sm text-gray-600  hover:underline">Meraki UI</a>
+                        <a href="#" class="block mt-2 text-sm text-gray-600  hover:underline">Resume Maker</a>
+                        <a href="#" class="block mt-2 text-sm text-gray-600  hover:underline">Cover Letter</a>
+                        <a href="#" class="block mt-2 text-sm text-gray-600  hover:underline">Document</a>
                     </div>
 
                     <div>
                         <h3 class="text-gray-700 uppercase">Contact</h3>
-                        <span class="block mt-2 text-sm text-gray-600  hover:underline">+1 526 654 8965</span>
-                        <span class="block mt-2 text-sm text-gray-600  hover:underline">example@email.com</span>
+                        <span class="block mt-2 text-sm text-gray-600  hover:underline">+91 9999999999</span>
+                        <span class="block mt-2 text-sm text-gray-600  hover:underline">musicoons@email.com</span>
                     </div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
         <hr class="h-px my-6 bg-gray-200 border-none ">
 
         <div>
-            <p class="text-center text-gray-500 ">© OverleafSimplified 2024 - All rights reserved</p>
+            <p class="text-center text-gray-500 ">© Easy Latex 2024 - All rights reserved</p>
         </div>
     </div>
 </footer>

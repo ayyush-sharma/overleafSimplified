@@ -15,11 +15,9 @@ export default function skillsFunction(technicalSkills){
         });
         str = str.slice(0,-1);
 
-        if(element.vis){
             latex = latex+String.raw`
              \textbf{${element.title}}{:${str}} \\
             `
-        }
     });
 
     return header+latex+String.raw`
