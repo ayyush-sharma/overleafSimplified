@@ -48,15 +48,14 @@
                     <div>
                         <h3 class="text-gray-700 uppercase">About</h3>
                         <a href="#" class="block mt-2 text-sm text-gray-600  hover:underline">Company</a>
-                        <a href="#" class="block mt-2 text-sm text-gray-600  hover:underline">community</a>
+                        <a href="#" class="block mt-2 text-sm text-gray-600  hover:underline">Reviews</a>
                         <a href="#" class="block mt-2 text-sm text-gray-600  hover:underline">Careers</a>
                     </div>
 
                     <div>
-                        <h3 class="text-gray-700 uppercase">Blog</h3>
-                        <a href="#" class="block mt-2 text-sm text-gray-600  hover:underline">Tec</a>
-                        <a href="#" class="block mt-2 text-sm text-gray-600  hover:underline">Music</a>
-                        <a href="#" class="block mt-2 text-sm text-gray-600  hover:underline">Videos</a>
+                        <h3 class="text-gray-700 uppercase">Profiles</h3>
+                        <a href="/public/ayush" class="block mt-2 text-sm text-gray-600  hover:underline">Ayush</a>
+                        <a href="/public/niharika" class="block mt-2 text-sm text-gray-600  hover:underline">Niharika</a>
                     </div>
 
                     <div>
@@ -68,7 +67,7 @@
 
                     <div>
                         <h3 class="text-gray-700 uppercase">Contact</h3>
-                        <span class="block mt-2 text-sm text-gray-600  hover:underline">+91 9999999999</span>
+                        <span class="block mt-2 text-sm text-gray-600  hover:underline">+91 8826305742</span>
                         <span class="block mt-2 text-sm text-gray-600  hover:underline">musicoons@email.com</span>
                     </div>
                 </div>

@@ -7,7 +7,7 @@
             <div class="grid grid-cols-1 gap-y-8 lg:items-center lg:grid-cols-2 sm:gap-y-20 xl:grid-cols-5">
                 <div class="text-center xl:col-span-2 lg:text-left md:px-16 lg:px-0">
                     <div class="max-w-sm mx-auto sm:max-w-md md:max-w-full">
-                        <h1 class="text-4xl font-bold leading-tight text-gray-900 sm:text-5xl sm:leading-tight lg:text-6xl lg:leading-tight font-pj">Create <span class="text-emerald-400"> ATS </span>Resume without <span class="line-through text-red-500">Coding</span> </h1>
+                        <h1 class="text-4xl font-bold leading-tight text-gray-900 sm:text-5xl sm:leading-tight lg:text-6xl lg:leading-tight font-pj">Create <span class="text-emerald-400 Cormorant text-6xl font-normal  "> LATEX </span>Resume without <span class="line-through text-red-500">Coding</span> </h1>
 
                         <div class="mt-8 lg:mt-12 lg:flex lg:items-center">
                             <div class="flex justify-center flex-shrink-0 -space-x-4 overflow-hidden lg:justify-start">
@@ -56,12 +56,12 @@
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex flex-col items-center">
             <div class="text-center">
-                <p class="text-lg font-medium text-gray-600 font-pj">2,157 people have said how good Overleafsimplified</p>
+                <p class="text-lg font-medium text-gray-600 font-pj">27 people have said how good is Easy Latex</p>
                 <h2 class="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl xl:text-5xl font-pj">Our Happy 😍 users review about us</h2>
             </div>
 
             <div class="mt-8 text-center md:mt-16 md:order-3">
-                <a href="#" title="" class="pb-2 text-base font-bold leading-7 text-gray-900 transition-all duration-200 border-b-2 border-gray-900 hover:border-gray-600 font-pj focus:outline-none focus:ring-1 focus:ring-gray-900 focus:ring-offset-2 hover:text-gray-600"> Check all 2,157 reviews </a>
+                <a href="#" title="" class="pb-2 text-base font-bold leading-7 text-gray-900 transition-all duration-200 border-b-2 border-gray-900 hover:border-gray-600 font-pj focus:outline-none focus:ring-1 focus:ring-gray-900 focus:ring-offset-2 hover:text-gray-600"> Check all 27 reviews </a>
             </div>
 
             <div class="relative mt-10 md:mt-24 md:order-2">

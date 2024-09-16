@@ -3,14 +3,14 @@
         <h1 class="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl">Our <span class="text-blue-500">Founding Team</span></h1>
 
         <p class="max-w-2xl mx-auto my-6 text-center text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo incidunt ex placeat modi magni quia error alias, adipisci rem similique, at omnis eligendi optio eos harum.
+            Niharika and Ayush, the founders of our team, were inspired to collaborate by their shared experience of struggling to craft effective resumes in LaTeX code. Recognizing the significant time and effort required, as well as the potential for errors and poor formatting, they set out to develop a solution that would streamline this process and produce high-quality results.
         </p>
 
         <div class="flex flex-col md:flex-row">
-            <a href="/">
+            <a href="/public/niharika">
                 <div class="px-12 py-8 m-2 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 ">
                     <div class="flex flex-col sm:-mx-4 sm:flex-row">
-                        <img class="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt="">
+                        <img class="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src="/niuu1.jpeg" alt="">
 
                         <div class="mt-4 sm:mx-4 sm:mt-0">
                             <h1 class="text-xl font-semibold text-gray-700 capitalize md:text-2xl group-hover:text-white">Niharika Sinha</h1>
@@ -19,28 +19,18 @@
                         </div>
                     </div>
 
-                    <p class="mt-4 text-gray-500 capitalize group-hover:text-gray-300">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nesciunt officia aliquam neque optio? Cumque facere numquam est.</p>
+                    <p class="mt-4 text-gray-500 capitalize group-hover:text-gray-300">I led the backend development and logic, creating a robust LaTeX integration that powers our resume builder. My expertise ensured a seamless user experience.</p>
 
                     <div class="flex mt-4 -mx-2">
-                        <a href="#" class="mx-2 text-gray-600 hover:text-gray-500 group-hover:text-white" aria-label="Reddit">
-                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C21.9939 17.5203 17.5203 21.9939 12 22ZM6.807 10.543C6.20862 10.5433 5.67102 10.9088 5.45054 11.465C5.23006 12.0213 5.37133 12.6558 5.807 13.066C5.92217 13.1751 6.05463 13.2643 6.199 13.33C6.18644 13.4761 6.18644 13.6229 6.199 13.769C6.199 16.009 8.814 17.831 12.028 17.831C15.242 17.831 17.858 16.009 17.858 13.769C17.8696 13.6229 17.8696 13.4761 17.858 13.33C18.4649 13.0351 18.786 12.3585 18.6305 11.7019C18.475 11.0453 17.8847 10.5844 17.21 10.593H17.157C16.7988 10.6062 16.458 10.7512 16.2 11C15.0625 10.2265 13.7252 9.79927 12.35 9.77L13 6.65L15.138 7.1C15.1931 7.60706 15.621 7.99141 16.131 7.992C16.1674 7.99196 16.2038 7.98995 16.24 7.986C16.7702 7.93278 17.1655 7.47314 17.1389 6.94094C17.1122 6.40873 16.6729 5.991 16.14 5.991C16.1022 5.99191 16.0645 5.99491 16.027 6C15.71 6.03367 15.4281 6.21641 15.268 6.492L12.82 6C12.7983 5.99535 12.7762 5.993 12.754 5.993C12.6094 5.99472 12.4851 6.09583 12.454 6.237L11.706 9.71C10.3138 9.7297 8.95795 10.157 7.806 10.939C7.53601 10.6839 7.17843 10.5422 6.807 10.543ZM12.18 16.524C12.124 16.524 12.067 16.524 12.011 16.524C11.955 16.524 11.898 16.524 11.842 16.524C11.0121 16.5208 10.2054 16.2497 9.542 15.751C9.49626 15.6958 9.47445 15.6246 9.4814 15.5533C9.48834 15.482 9.52348 15.4163 9.579 15.371C9.62737 15.3318 9.68771 15.3102 9.75 15.31C9.81233 15.31 9.87275 15.3315 9.921 15.371C10.4816 15.7818 11.159 16.0022 11.854 16C11.9027 16 11.9513 16 12 16C12.059 16 12.119 16 12.178 16C12.864 16.0011 13.5329 15.7863 14.09 15.386C14.1427 15.3322 14.2147 15.302 14.29 15.302C14.3653 15.302 14.4373 15.3322 14.49 15.386C14.5985 15.4981 14.5962 15.6767 14.485 15.786V15.746C13.8213 16.2481 13.0123 16.5208 12.18 16.523V16.524ZM14.307 14.08H14.291L14.299 14.041C13.8591 14.011 13.4994 13.6789 13.4343 13.2429C13.3691 12.8068 13.6162 12.3842 14.028 12.2269C14.4399 12.0697 14.9058 12.2202 15.1478 12.5887C15.3899 12.9572 15.3429 13.4445 15.035 13.76C14.856 13.9554 14.6059 14.0707 14.341 14.08H14.306H14.307ZM9.67 14C9.11772 14 8.67 13.5523 8.67 13C8.67 12.4477 9.11772 12 9.67 12C10.2223 12 10.67 12.4477 10.67 13C10.67 13.5523 10.2223 14 9.67 14Z">
-                                </path>
-                            </svg>
+                        <a href="/" class="mx-2 text-gray-600 hover:text-gray-500 group-hover:text-white" aria-label="resume">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" xml:space="preserve" style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;fill-rule:evenodd;clip-rule:evenodd" viewBox="0 0 6.827 6.827"><rect width="6.827" height="6.827" rx=".853" ry=".853" style="fill:#00838f"/><path d="M1.573.853h2.502v1.072c0 .117.096.213.214.213H5.36v3.729a.107.107 0 0 1-.107.106h-3.68a.107.107 0 0 1-.106-.106V.96c0-.059.047-.107.106-.107zm.455 3.28h2.77v.16h-2.77v-.16zm0-.55h2.77v.16h-2.77v-.16zm0 1.098h2.77v.16h-2.77v-.16zm.588-1.951a.326.326 0 0 1-.32-.305.578.578 0 0 1-.002-.08c0-.122.038-.2.1-.25a.355.355 0 0 1 .221-.07l.007.001c.08.002.157.02.216.068.062.05.1.13.1.25a2.463 2.463 0 0 1-.003.08.335.335 0 0 1-.096.217.335.335 0 0 1-.22.089h-.003zm-.333-.148a.482.482 0 0 0-.169.163.568.568 0 0 0-.086.303v.009c0 .037.014.071.035.096a.124.124 0 0 0 .094.045h.918c.037 0 .07-.017.094-.045a.148.148 0 0 0 .035-.096v-.009a.568.568 0 0 0-.085-.3.483.483 0 0 0-.168-.165.354.354 0 0 1-.072.1.377.377 0 0 1-.596-.101zm2.006-.55a.107.107 0 0 1-.107-.107V.96a.107.107 0 0 1 .183-.076l.964.964a.107.107 0 0 1-.076.182H4.29zm-.877 1.04h1.374v.16H3.412v-.16zm.495-.38.144.046a.322.322 0 0 1-.11.179.313.313 0 0 1-.195.058.316.316 0 0 1-.24-.1.382.382 0 0 1-.094-.273c0-.122.031-.217.094-.284a.324.324 0 0 1 .25-.101c.089 0 .162.026.218.08a.288.288 0 0 1 .075.134l-.147.035a.154.154 0 0 0-.054-.09.155.155 0 0 0-.1-.033.167.167 0 0 0-.133.059c-.034.039-.05.102-.05.19 0 .092.016.158.05.197.033.04.076.06.13.06.039 0 .073-.013.101-.038a.219.219 0 0 0 .061-.118zm.458.27-.262-.733h.16l.186.543.18-.543h.157l-.263.733h-.158z" style="fill:#fffffe"/></svg>
                         </a>
 
-                        <a href="#" class="mx-2 text-gray-600 hover:text-gray-500 group-hover:text-white" aria-label="Facebook">
-                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M2.00195 12.002C2.00312 16.9214 5.58036 21.1101 10.439 21.881V14.892H7.90195V12.002H10.442V9.80204C10.3284 8.75958 10.6845 7.72064 11.4136 6.96698C12.1427 6.21332 13.1693 5.82306 14.215 5.90204C14.9655 5.91417 15.7141 5.98101 16.455 6.10205V8.56104H15.191C14.7558 8.50405 14.3183 8.64777 14.0017 8.95171C13.6851 9.25566 13.5237 9.68693 13.563 10.124V12.002H16.334L15.891 14.893H13.563V21.881C18.8174 21.0506 22.502 16.2518 21.9475 10.9611C21.3929 5.67041 16.7932 1.73997 11.4808 2.01722C6.16831 2.29447 2.0028 6.68235 2.00195 12.002Z">
-                                </path>
-                            </svg>
+                        <a href="https://www.linkedin.com/in/nihx25/" class="mx-2 text-gray-600 hover:text-gray-500 group-hover:text-white" aria-label="linkedin">
+                            <svg fill="currentColor" class="w-5 h-5"  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 310 310" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="XMLID_801_"> <path id="XMLID_802_" d="M72.16,99.73H9.927c-2.762,0-5,2.239-5,5v199.928c0,2.762,2.238,5,5,5H72.16c2.762,0,5-2.238,5-5V104.73 C77.16,101.969,74.922,99.73,72.16,99.73z"></path> <path id="XMLID_803_" d="M41.066,0.341C18.422,0.341,0,18.743,0,41.362C0,63.991,18.422,82.4,41.066,82.4 c22.626,0,41.033-18.41,41.033-41.038C82.1,18.743,63.692,0.341,41.066,0.341z"></path> <path id="XMLID_804_" d="M230.454,94.761c-24.995,0-43.472,10.745-54.679,22.954V104.73c0-2.761-2.238-5-5-5h-59.599 c-2.762,0-5,2.239-5,5v199.928c0,2.762,2.238,5,5,5h62.097c2.762,0,5-2.238,5-5v-98.918c0-33.333,9.054-46.319,32.29-46.319 c25.306,0,27.317,20.818,27.317,48.034v97.204c0,2.762,2.238,5,5,5H305c2.762,0,5-2.238,5-5V194.995 C310,145.43,300.549,94.761,230.454,94.761z"></path> </g> </g></svg>
                         </a>
 
-                        <a href="#" class="mx-2 text-gray-600 hover:text-gray-500 group-hover:text-white" aria-label="Github">
+                        <a href="https://github.com/nihx25" class="mx-2 text-gray-600 hover:text-gray-500 group-hover:text-white" aria-label="Github">
                             <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -51,10 +41,10 @@
                     </div>
                 </div>
             </a>
-            <a href="/">
+            <a href="/public/ayush">
                 <div class="px-12 py-8 m-2 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 ">
                     <div class="flex flex-col sm:-mx-4 sm:flex-row">
-                        <img class="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src="https://images.unsplash.com/photo-1531590878845-12627191e687?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" alt="">
+                        <img class="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src="/ayush.jpg" alt="">
 
                         <div class="mt-4 sm:mx-4 sm:mt-0">
                             <h1 class="text-xl font-semibold text-gray-700 capitalize md:text-2xl group-hover:text-white">Ayush Sharma</h1>
@@ -63,28 +53,19 @@
                         </div>
                     </div>
 
-                    <p class="mt-4 text-gray-500 capitalize group-hover:text-gray-300">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nesciunt officia aliquam neque optio? Cumque facere numquam est.</p>
+                    <p class="mt-4 text-gray-500 capitalize group-hover:text-gray-300">I led the front-end development, crafting a responsive and intuitive UI that streamlines resume creation. My expertise ensured a visually appealing and user-friendly interface.</p>
 
                     <div class="flex mt-4 -mx-2">
-                        <a href="#" class="mx-2 text-gray-600 hover:text-gray-500 group-hover:text-white" aria-label="Reddit">
-                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C21.9939 17.5203 17.5203 21.9939 12 22ZM6.807 10.543C6.20862 10.5433 5.67102 10.9088 5.45054 11.465C5.23006 12.0213 5.37133 12.6558 5.807 13.066C5.92217 13.1751 6.05463 13.2643 6.199 13.33C6.18644 13.4761 6.18644 13.6229 6.199 13.769C6.199 16.009 8.814 17.831 12.028 17.831C15.242 17.831 17.858 16.009 17.858 13.769C17.8696 13.6229 17.8696 13.4761 17.858 13.33C18.4649 13.0351 18.786 12.3585 18.6305 11.7019C18.475 11.0453 17.8847 10.5844 17.21 10.593H17.157C16.7988 10.6062 16.458 10.7512 16.2 11C15.0625 10.2265 13.7252 9.79927 12.35 9.77L13 6.65L15.138 7.1C15.1931 7.60706 15.621 7.99141 16.131 7.992C16.1674 7.99196 16.2038 7.98995 16.24 7.986C16.7702 7.93278 17.1655 7.47314 17.1389 6.94094C17.1122 6.40873 16.6729 5.991 16.14 5.991C16.1022 5.99191 16.0645 5.99491 16.027 6C15.71 6.03367 15.4281 6.21641 15.268 6.492L12.82 6C12.7983 5.99535 12.7762 5.993 12.754 5.993C12.6094 5.99472 12.4851 6.09583 12.454 6.237L11.706 9.71C10.3138 9.7297 8.95795 10.157 7.806 10.939C7.53601 10.6839 7.17843 10.5422 6.807 10.543ZM12.18 16.524C12.124 16.524 12.067 16.524 12.011 16.524C11.955 16.524 11.898 16.524 11.842 16.524C11.0121 16.5208 10.2054 16.2497 9.542 15.751C9.49626 15.6958 9.47445 15.6246 9.4814 15.5533C9.48834 15.482 9.52348 15.4163 9.579 15.371C9.62737 15.3318 9.68771 15.3102 9.75 15.31C9.81233 15.31 9.87275 15.3315 9.921 15.371C10.4816 15.7818 11.159 16.0022 11.854 16C11.9027 16 11.9513 16 12 16C12.059 16 12.119 16 12.178 16C12.864 16.0011 13.5329 15.7863 14.09 15.386C14.1427 15.3322 14.2147 15.302 14.29 15.302C14.3653 15.302 14.4373 15.3322 14.49 15.386C14.5985 15.4981 14.5962 15.6767 14.485 15.786V15.746C13.8213 16.2481 13.0123 16.5208 12.18 16.523V16.524ZM14.307 14.08H14.291L14.299 14.041C13.8591 14.011 13.4994 13.6789 13.4343 13.2429C13.3691 12.8068 13.6162 12.3842 14.028 12.2269C14.4399 12.0697 14.9058 12.2202 15.1478 12.5887C15.3899 12.9572 15.3429 13.4445 15.035 13.76C14.856 13.9554 14.6059 14.0707 14.341 14.08H14.306H14.307ZM9.67 14C9.11772 14 8.67 13.5523 8.67 13C8.67 12.4477 9.11772 12 9.67 12C10.2223 12 10.67 12.4477 10.67 13C10.67 13.5523 10.2223 14 9.67 14Z">
-                                </path>
-                            </svg>
+                        
+                        <a href="/" class="mx-2 text-gray-600 hover:text-gray-500 group-hover:text-white" aria-label="resume">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" xml:space="preserve" style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;fill-rule:evenodd;clip-rule:evenodd" viewBox="0 0 6.827 6.827"><rect width="6.827" height="6.827" rx=".853" ry=".853" style="fill:#00838f"/><path d="M1.573.853h2.502v1.072c0 .117.096.213.214.213H5.36v3.729a.107.107 0 0 1-.107.106h-3.68a.107.107 0 0 1-.106-.106V.96c0-.059.047-.107.106-.107zm.455 3.28h2.77v.16h-2.77v-.16zm0-.55h2.77v.16h-2.77v-.16zm0 1.098h2.77v.16h-2.77v-.16zm.588-1.951a.326.326 0 0 1-.32-.305.578.578 0 0 1-.002-.08c0-.122.038-.2.1-.25a.355.355 0 0 1 .221-.07l.007.001c.08.002.157.02.216.068.062.05.1.13.1.25a2.463 2.463 0 0 1-.003.08.335.335 0 0 1-.096.217.335.335 0 0 1-.22.089h-.003zm-.333-.148a.482.482 0 0 0-.169.163.568.568 0 0 0-.086.303v.009c0 .037.014.071.035.096a.124.124 0 0 0 .094.045h.918c.037 0 .07-.017.094-.045a.148.148 0 0 0 .035-.096v-.009a.568.568 0 0 0-.085-.3.483.483 0 0 0-.168-.165.354.354 0 0 1-.072.1.377.377 0 0 1-.596-.101zm2.006-.55a.107.107 0 0 1-.107-.107V.96a.107.107 0 0 1 .183-.076l.964.964a.107.107 0 0 1-.076.182H4.29zm-.877 1.04h1.374v.16H3.412v-.16zm.495-.38.144.046a.322.322 0 0 1-.11.179.313.313 0 0 1-.195.058.316.316 0 0 1-.24-.1.382.382 0 0 1-.094-.273c0-.122.031-.217.094-.284a.324.324 0 0 1 .25-.101c.089 0 .162.026.218.08a.288.288 0 0 1 .075.134l-.147.035a.154.154 0 0 0-.054-.09.155.155 0 0 0-.1-.033.167.167 0 0 0-.133.059c-.034.039-.05.102-.05.19 0 .092.016.158.05.197.033.04.076.06.13.06.039 0 .073-.013.101-.038a.219.219 0 0 0 .061-.118zm.458.27-.262-.733h.16l.186.543.18-.543h.157l-.263.733h-.158z" style="fill:#fffffe"/></svg>
                         </a>
 
-                        <a href="#" class="mx-2 text-gray-600 hover:text-gray-500 group-hover:text-white" aria-label="Facebook">
-                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M2.00195 12.002C2.00312 16.9214 5.58036 21.1101 10.439 21.881V14.892H7.90195V12.002H10.442V9.80204C10.3284 8.75958 10.6845 7.72064 11.4136 6.96698C12.1427 6.21332 13.1693 5.82306 14.215 5.90204C14.9655 5.91417 15.7141 5.98101 16.455 6.10205V8.56104H15.191C14.7558 8.50405 14.3183 8.64777 14.0017 8.95171C13.6851 9.25566 13.5237 9.68693 13.563 10.124V12.002H16.334L15.891 14.893H13.563V21.881C18.8174 21.0506 22.502 16.2518 21.9475 10.9611C21.3929 5.67041 16.7932 1.73997 11.4808 2.01722C6.16831 2.29447 2.0028 6.68235 2.00195 12.002Z">
-                                </path>
-                            </svg>
+                        <a href="https://www.linkedin.com/in/ayushsharma105/" class="mx-2 text-gray-600 hover:text-gray-500 group-hover:text-white" aria-label="linkedin">
+                            <svg fill="currentColor" class="w-5 h-5"  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 310 310" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="XMLID_801_"> <path id="XMLID_802_" d="M72.16,99.73H9.927c-2.762,0-5,2.239-5,5v199.928c0,2.762,2.238,5,5,5H72.16c2.762,0,5-2.238,5-5V104.73 C77.16,101.969,74.922,99.73,72.16,99.73z"></path> <path id="XMLID_803_" d="M41.066,0.341C18.422,0.341,0,18.743,0,41.362C0,63.991,18.422,82.4,41.066,82.4 c22.626,0,41.033-18.41,41.033-41.038C82.1,18.743,63.692,0.341,41.066,0.341z"></path> <path id="XMLID_804_" d="M230.454,94.761c-24.995,0-43.472,10.745-54.679,22.954V104.73c0-2.761-2.238-5-5-5h-59.599 c-2.762,0-5,2.239-5,5v199.928c0,2.762,2.238,5,5,5h62.097c2.762,0,5-2.238,5-5v-98.918c0-33.333,9.054-46.319,32.29-46.319 c25.306,0,27.317,20.818,27.317,48.034v97.204c0,2.762,2.238,5,5,5H305c2.762,0,5-2.238,5-5V194.995 C310,145.43,300.549,94.761,230.454,94.761z"></path> </g> </g></svg>
                         </a>
 
-                        <a href="#" class="mx-2 text-gray-600 hover:text-gray-500 group-hover:text-white" aria-label="Github">
+                        <a href="https://github.com/ayyush-sharma" class="mx-2 text-gray-600 hover:text-gray-500 group-hover:text-white" aria-label="Github">
                             <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
