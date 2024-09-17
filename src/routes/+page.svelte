@@ -27,7 +27,7 @@
                             class="inline-flex items-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 border border-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 font-pj justif-center hover:bg-gray-600"
                             role="button"
                         >
-                            Use Now
+                            Resume Maker
                         </a>
 
                         <a
@@ -39,7 +39,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="mr-2" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="m4.736 1.968-.892 3.269-.014.058C2.113 5.568 1 6.006 1 6.5 1 7.328 4.134 8 8 8s7-.672 7-1.5c0-.494-1.113-.932-2.83-1.205l-.014-.058-.892-3.27c-.146-.533-.698-.849-1.239-.734C9.411 1.363 8.62 1.5 8 1.5s-1.411-.136-2.025-.267c-.541-.115-1.093.2-1.239.735m.015 3.867a.25.25 0 0 1 .274-.224c.9.092 1.91.143 2.975.143a30 30 0 0 0 2.975-.143.25.25 0 0 1 .05.498c-.918.093-1.944.145-3.025.145s-2.107-.052-3.025-.145a.25.25 0 0 1-.224-.274M3.5 10h2a.5.5 0 0 1 .5.5v1a1.5 1.5 0 0 1-3 0v-1a.5.5 0 0 1 .5-.5m-1.5.5q.001-.264.085-.5H2a.5.5 0 0 1 0-1h3.5a1.5 1.5 0 0 1 1.488 1.312 3.5 3.5 0 0 1 2.024 0A1.5 1.5 0 0 1 10.5 9H14a.5.5 0 0 1 0 1h-.085q.084.236.085.5v1a2.5 2.5 0 0 1-5 0v-.14l-.21-.07a2.5 2.5 0 0 0-1.58 0l-.21.07v.14a2.5 2.5 0 0 1-5 0zm8.5-.5h2a.5.5 0 0 1 .5.5v1a1.5 1.5 0 0 1-3 0v-1a.5.5 0 0 1 .5-.5"/>
                           </svg>
-                            Guest User
+                            Guest
 
                         </a>
                     </div>
@@ -56,12 +56,12 @@
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex flex-col items-center">
             <div class="text-center">
-                <p class="text-lg font-medium text-gray-600 font-pj">27 people have said how good is Easy Latex</p>
+                <p class="text-lg font-medium text-gray-600 font-pj">50+ people have said how good is Easy Latex</p>
                 <h2 class="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl xl:text-5xl font-pj">Our Happy 😍 users review about us</h2>
             </div>
 
             <div class="mt-8 text-center md:mt-16 md:order-3">
-                <a href="#" title="" class="pb-2 text-base font-bold leading-7 text-gray-900 transition-all duration-200 border-b-2 border-gray-900 hover:border-gray-600 font-pj focus:outline-none focus:ring-1 focus:ring-gray-900 focus:ring-offset-2 hover:text-gray-600"> Check all 27 reviews </a>
+                <a href="/public/reviews" title="" class="pb-2 text-base font-bold leading-7 text-gray-900 transition-all duration-200 border-b-2 border-gray-900 hover:border-gray-600 font-pj focus:outline-none focus:ring-1 focus:ring-gray-900 focus:ring-offset-2 hover:text-gray-600"> Check all reviews </a>
             </div>
 
             <div class="relative mt-10 md:mt-24 md:order-2">
@@ -110,7 +110,7 @@
                                 <img class="flex-shrink-0 object-cover rounded-full w-11 h-11" src="https://cdn.rareblocks.xyz/collection/clarity/images/testimonial/4/avatar-male-1.png" alt="" />
                                 <div class="ml-4">
                                     <p class="text-base font-bold text-gray-900 font-pj">Leslie Alexander</p>
-                                    <p class="mt-0.5 text-sm font-pj text-gray-600">Freelance React Developer</p>
+                                    <!-- <p class="mt-0.5 text-sm font-pj text-gray-600">Freelance React Developer</p> -->
                                 </div>
                             </div>
                         </div>
@@ -156,7 +156,7 @@
                                 <img class="flex-shrink-0 object-cover rounded-full w-11 h-11" src="https://cdn.rareblocks.xyz/collection/clarity/images/testimonial/4/avatar-male-2.png" alt="" />
                                 <div class="ml-4">
                                     <p class="text-base font-bold text-gray-900 font-pj">Jacob Jones</p>
-                                    <p class="mt-0.5 text-sm font-pj text-gray-600">Digital Marketer</p>
+                                    <!-- <p class="mt-0.5 text-sm font-pj text-gray-600">Digital Marketer</p> -->
                                 </div>
                             </div>
                         </div>
@@ -202,7 +202,7 @@
                                 <img class="flex-shrink-0 object-cover rounded-full w-11 h-11" src="https://cdn.rareblocks.xyz/collection/clarity/images/testimonial/4/avatar-female.png" alt="" />
                                 <div class="ml-4">
                                     <p class="text-base font-bold text-gray-900 font-pj">Jenny Wilson</p>
-                                    <p class="mt-0.5 text-sm font-pj text-gray-600">Graphic Designer</p>
+                                    <!-- <p class="mt-0.5 text-sm font-pj text-gray-600">Graphic Designer</p> -->
                                 </div>
                             </div>
                         </div>

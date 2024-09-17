@@ -17,6 +17,8 @@
                     href="/public/techstack">Tech Stack</a>
                 <a class="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:scale-125 hover:text-gray-900 "
                     href="/public/about">About Us</a>
+                <a class="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:scale-125 hover:text-gray-900 "
+                    href="/public/reviews">Write Review</a>
             </div>
             <div class=" hidden md:flex items-center justify-end gap-3">
                 <a class="hidden items-center justify-center rounded-xl bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-all duration-150 hover:bg-gray-50 sm:inline-flex"
